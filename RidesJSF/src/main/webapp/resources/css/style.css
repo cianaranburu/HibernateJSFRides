@@ -1,0 +1,144 @@
+/* Reset some default browser styles */
+body, h1, h2, h3, h4, h5, h6, p, input, select, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Body style */
+body {
+    background-color: #f4f7f8;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Headings */
+h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 1.8em;
+    text-align: center;
+}
+
+/* Forms */
+h:form {
+    background-color: #ffffff;
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Labels and inputs */
+h:outputLabel {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #34495e;
+}
+
+h:inputText, p:calendar, h:selectOneMenu {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+}
+
+h:inputText:focus, p:calendar:focus, h:selectOneMenu:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    outline: none;
+}
+
+/* Style all buttons including PrimeFaces and standard ones */
+h:commandButton, input[type=submit], button, .custom-button, .ui-button {
+    background-color: #3498db !important;
+    color: white !important;
+    padding: 10px 20px;
+    border: none !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    font-weight: 600;
+    font-size: 1em;
+    transition: background-color 0.2s ease-in-out, transform 0.1s;
+    text-align: center;
+}
+
+h:commandButton:hover, input[type=submit]:hover, button:hover, .custom-button:hover, .ui-button:hover {
+    background-color: #2980b9 !important;
+    transform: translateY(-1px);
+}
+
+h:commandButton:active, input[type=submit]:active, button:active, .custom-button:active, .ui-button:active {
+    transform: translateY(0);
+}
+
+
+
+/* PanelGrid spacing */
+h:panelGrid {
+    margin-bottom: 20px;
+}
+
+/* DataTable */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.custom-table th, .custom-table td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.custom-table th {
+    background-color: #3498db;
+    color: #fff;
+    font-weight: 600;
+}
+
+.custom-table tr:nth-child(even) {
+    background-color: #f2f7f9;
+}
+
+.custom-table tr:hover {
+    background-color: #d6eaf8;
+}
+
+/* Messages */
+#msg {
+    display: block;
+    margin-top: 10px;
+    font-weight: 500;
+    color: #e74c3c;
+}
+
+/* Flex container for search form */
+div[style*="display:flex"] {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    h:form, div[style*="display:flex"] {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    h:inputText, p:calendar, h:selectOneMenu {
+        width: 100%;
+    }
+}

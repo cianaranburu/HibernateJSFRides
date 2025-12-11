@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+<h:head><title>Rides Aplikazioa</title>
+<h:outputStylesheet library="css" name="style.css" /></h:head>
+
+<h:body>
+
+<h:form>
+    <h3>Create a Ride</h3>
+
+    <h:panelGrid columns="2" cellpadding="5">
+
+        <h:outputLabel for="from" value="From:"/>
+        <h:inputText id="from" value="#{rideBean.from}" />
+
+        <h:outputLabel for="to" value="To:"/>
+        <h:inputText id="to" value="#{rideBean.to}" />
+
+        <h:outputLabel for="date" value="Date:"/>
+        <p:calendar id="date" value="#{rideBean.date}" navigator="false" mode="inline"/>
+
+        <h:outputLabel for="places" value="Places:"/>
+        <h:inputText id="places" value="#{rideBean.places}">
+            <f:validateLongRange minimum="1" />
+        </h:inputText>
+
+        <h:outputLabel for="price" value="Price:"/>
+        <h:inputText id="price" value="#{rideBean.price}">
+            <f:convertNumber type="number" minFractionDigits="2" maxFractionDigits="2"/>
+        </h:inputText>
+
+    </h:panelGrid>
+    <h:outputText id="msg" value="#{rideBean.msg}"/>
+    
+    <h:commandButton value="Submit" action="#{rideBean.createRide}" style="background-color:#3498db;color:white;padding:10px 20px;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:1em;transition:background-color 0.2s ease-in-out, transform 0.1s;" onmouseover="this.style.backgroundColor='#2980b9';" onmouseout="this.style.backgroundColor='#3498db';" onmousedown="this.style.transform='translateY(1px)';" onmouseup="this.style.transform='translateY(0)';"/>
+</h:form>
+
+<h:form>
+<br/>
+    <h:commandButton value="Go back" action="index.xhtml" style="background-color:#3498db;color:white;padding:10px 20px;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:1em;transition:background-color 0.2s ease-in-out, transform 0.1s;" onmouseover="this.style.backgroundColor='#2980b9';" onmouseout="this.style.backgroundColor='#3498db';" onmousedown="this.style.transform='translateY(1px)';" onmouseup="this.style.transform='translateY(0)';"/>
+</h:form>
+
+</h:body>
+</f:view>
+</html>

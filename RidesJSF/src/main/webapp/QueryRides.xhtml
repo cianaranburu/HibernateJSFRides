@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+<h:head>
+    <title>Rides Aplikazioa</title>
+    <h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+
+<h:form id="queryForm">
+
+    <h3>Search for Rides</h3>
+
+    <div style="max-width:800px; margin:0 auto; display:flex; flex-direction:column; gap:15px;">
+
+        <!-- From and To side by side -->
+        <div style="display:flex; gap:20px; flex-wrap:wrap;">
+            <div style="flex:1; min-width:200px;">
+                <h:outputLabel for="from" value="From:"/>
+                <h:selectOneMenu id="from" value="#{queryRidesBean.selectedFrom}" style="width:100%; padding:10px 12px; border:1px solid #ccc; border-radius:8px; font-size:1em; transition: all 0.2s ease-in-out;" onfocus="this.style.borderColor='#3498db';" onblur="this.style.borderColor='#ccc';">
+                    <f:selectItems value="#{queryRidesBean.fromOptions}" />
+                    <f:ajax listener="#{queryRidesBean.updateToOptions}" render="to"/>
+                </h:selectOneMenu>
+            </div>
+
+            <div style="flex:1; min-width:200px;">
+                <h:outputLabel for="to" value="To:"/>
+                <h:selectOneMenu id="to" value="#{queryRidesBean.selectedTo}" style="width:100%; padding:10px 12px; border:1px solid #ccc; border-radius:8px; font-size:1em; transition: all 0.2s ease-in-out;" onfocus="this.style.borderColor='#3498db';" onblur="this.style.borderColor='#ccc';">
+                    <f:selectItems value="#{queryRidesBean.toOptions}" />
+                </h:selectOneMenu>
+            </div>
+        </div>
+
+        <!-- Calendar full width -->
+        <div>
+            <h:outputLabel for="date" value="Date:"/>
+            <p:calendar id="date" value="#{queryRidesBean.selectedDate}" mode="inline" navigator="false" style="width:100%; min-height:300px"/>
+        </div>
+
+        <!-- Search button below everything -->
+        <div style="text-align:center;">
+            <h:commandButton value="Search" action="#{queryRidesBean.searchRides}" update="resultsTable" style="background-color:#3498db;color:white;padding:10px 20px;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:1em;transition:background-color 0.2s ease-in-out, transform 0.1s;" onmouseover="this.style.backgroundColor='#2980b9';" onmouseout="this.style.backgroundColor='#3498db';" onmousedown="this.style.transform='translateY(1px)';" onmouseup="this.style.transform='translateY(0)';"/>
+        </div>
+
+    </div>
+
+</h:form>
+
+
+<h:panelGroup style="margin:30px auto; max-width:800px;">
+    <h:dataTable value="#{queryRidesBean.searchResults}" var="ride" styleClass="custom-table">
+
+        <h:column>
+            <f:facet name="header">
+                From
+            </f:facet>
+            #{ride.from}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">
+                To
+            </f:facet>
+            #{ride.to}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">
+                Date
+            </f:facet>
+            <h:outputText value="#{ride.date}">
+                <f:convertDateTime pattern="yyyy-MM-dd"/>
+            </h:outputText>
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">
+                Places
+            </f:facet>
+            #{ride.nPlaces}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">
+                Price
+            </f:facet>
+            #{ride.price}
+        </h:column>
+
+    </h:dataTable>
+
+    <h:outputText value="No rides found" rendered="#{empty queryRidesBean.searchResults}" style="color:#fff; display:block; text-align:center; margin-top:10px;"/>
+</h:panelGroup>
+
+
+<!-- Back button -->
+<h:form style="text-align:center; margin-top:20px;">
+    <h:commandButton value="Back" action="index.xhtml" styleClass="custom-button" style="background-color:#3498db;color:white;padding:10px 20px;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:1em;transition:background-color 0.2s ease-in-out, transform 0.1s;" onmouseover="this.style.backgroundColor='#2980b9';" onmouseout="this.style.backgroundColor='#3498db';" onmousedown="this.style.transform='translateY(1px)';" onmouseup="this.style.transform='translateY(0)';"/>
+</h:form>
+
+</h:body>
+</f:view>
+</html>
